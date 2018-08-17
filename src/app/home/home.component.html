@@ -1,0 +1,25 @@
+<div class="container">
+  <div>Filter by</div>
+  <select name="" id="" [(ngModel)]="filterValue" value="filterValue" (ngModelChange)="onChange()">
+    <option *ngFor="let filter of filterArray"  [value]="filter.value">{{ filter.text }}</option>
+  </select>
+  <div class="row">
+    <div class="col-4" *ngFor="let data of currentData; let i = index;">
+        <div class="card m-2 bg-warning">
+          <img [src]="data.url.includes('books') ? 'assets/books.jpg' 
+                  :data.url.includes('characters') ? 'assets/characters.jpg'
+                  : 'assets/houses.jpg' " 
+                class="img-fluid" alt="">
+          <div class="card-body">
+            <h4 class="card-title"> {{ data.name || 'Unknown' }}</h4>
+            <h6 *ngIf="data.authors">Written By- {{ data.authors[0] }}</h6>
+            <h6 *ngIf="data.aliases">Aliases: {{ data.aliases }}</h6>
+            <h6 *ngIf="data.region">{{ data.region }}</h6>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-outline-dark" (click)="showDetails(i)">More Info</button>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
