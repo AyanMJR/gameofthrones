@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
     { value: 'houses', text: 'Houses' }
   ];
 
-  constructor(private apiClient: ApiService,
+  constructor(public apiClient: ApiService,
             private router: Router, 
             private spinnerService: Ng4LoadingSpinnerService) { }
 
