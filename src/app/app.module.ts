@@ -7,16 +7,19 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner'
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { ViewComponent } from './view/view.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent }
+  { path: 'home', component: HomeComponent },
+  { path: 'view/:id', component: ViewComponent}
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ViewComponent
   ],
   imports: [
     BrowserModule,

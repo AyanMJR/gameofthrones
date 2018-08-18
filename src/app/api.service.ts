@@ -8,6 +8,7 @@ import { forkJoin } from 'rxjs/internal/observable/forkJoin';
 export class ApiService {
 
   private base_url = "https://www.anapioficeandfire.com/api/";
+  currentData: any;
 
   constructor(private http: HttpClient) { }
 

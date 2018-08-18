@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner'
 import { ApiService } from '../api.service';
 
@@ -12,8 +13,7 @@ export class HomeComponent implements OnInit {
   books: any;
   characters: any;
   houses: any;
-  allData: Array<any>;
-  currentData: any;
+  allData: any;
   filterValue: string;
   filterArray = [
     { value: 'all', text: 'All' },
@@ -22,40 +22,38 @@ export class HomeComponent implements OnInit {
     { value: 'houses', text: 'Houses' }
   ];
 
-  constructor(private apiClient: ApiService, 
+  constructor(private apiClient: ApiService,
+            private router: Router, 
             private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
     this.spinnerService.show();
     this.apiClient.getAllData()
       .subscribe(response => {
-        console.log(response);
         this.books = response['0'];
         this.characters = response['1'];
         this.houses = response['2'];
-        this.allData =  Array.prototype.concat(response['0'], response['1'], response['2']); //[...response['0'], ...response['1'], ...response['2']];
-        this.currentData = this.allData;
+        this.allData =  Array.prototype.concat(response['0'], response['1'], response['2']); 
+        this.apiClient.currentData = this.allData;
         this.filterValue = 'all'
         this.spinnerService.hide();
       })
   }
 
   onChange() {
-    console.log(this.filterValue);
     if(this.filterValue === 'all') {
-      this.currentData = this.allData
+      this.apiClient.currentData = this.allData
     } else if(this.filterValue === 'books') {
-      this.currentData = this.books; 
+      this.apiClient.currentData = this.books; 
     } else if(this.filterValue === 'characters') {
-      this.currentData = this.characters;
+      this.apiClient.currentData = this.characters;
     } else if(this.filterValue === 'houses') {
-      this.currentData = this.houses;
+      this.apiClient.currentData = this.houses;
     }
   }
 
   showDetails(index) {
-    console.log(index);
-    console.log(this.currentData[index])
+    this.router.navigate(['view', index]);
   }
 
 }

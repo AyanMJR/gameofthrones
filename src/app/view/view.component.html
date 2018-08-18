@@ -1,0 +1,35 @@
+<div class="jumbotron bg-warning" [ngSwitch]="category" > 
+    <div *ngSwitchCase="'books'">
+      <h1 class="display-4 text-center">{{ selectedData.name }}</h1>
+      <p class="lead text-center">Written By- {{ selectedData.authors }}</p>
+      <hr class="my-4">
+      <h5>Published By: {{ selectedData.publisher || 'Unknown' }}</h5>
+      <h5>Media type: {{ selectedData.mediaType }}</h5>
+      <h5>Released Date: {{ selectedData.released }}</h5>
+      <h5>Number of pages: {{ selectedData.numberOfPages }}</h5>
+      <h5>Country: {{ selectedData.country }}</h5>
+    </div>
+    <div *ngSwitchCase="'characters'">
+      <h1 class="display-4 text-center">{{ selectedData.name || 'UnKnown'}}</h1>
+      <p class="lead text-center">{{ selectedData.culture }}</p>
+      <hr class="my-4">
+      <h5>Aliases: {{ selectedData.aliases }}</h5>
+      <h5>Played by: {{ selectedData.playedBy || 'UnKnown' }}</h5>
+      <h5>Born: {{ selectedData.born || 'Unknown' }}</h5>
+      <h5>Gender: {{ selectedData.gender }}</h5>
+      <h5>Father: {{ selectedData.father || 'Unknown' }}</h5>      
+      <h5>Spouse {{ selectedData.spouse || 'UnKnown' }}</h5>
+      <h5>Died: {{ selectedData.died || 'Unknown' }}</h5>
+    </div>
+    <div *ngSwitchCase="'houses'">
+      <h1 class="display-4 text-center">{{ selectedData.name || 'UnKnown'}}</h1>
+      <p class="lead text-center">{{  selectedData.region }}</p>
+      <hr class="my-4">
+      <h5>Titles: {{ selectedData.titles || 'UnKnown' }}</h5>
+      <h5>Founder: {{ selectedData.founder || 'Unknown'}}</h5>
+      <h5>Current Lord: {{ selectedData.currentLord || 'Unknown'}}</h5>
+      <h5>Coat of arms: {{ selectedData.coatOfArms }}</h5>
+      <h5>Seats: {{ selectedData.seats }}</h5>
+    </div>
+    <a class="btn btn-dark btn-lg" href="#" role="button" (click)="onClick()">Go back</a>
+</div>
