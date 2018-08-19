@@ -33,7 +33,27 @@ export class HomeComponent implements OnInit {
         this.books = response['0'];
         this.characters = response['1'];
         this.houses = response['2'];
-        this.allData =  Array.prototype.concat(response['0'], response['1'], response['2']); 
+        this.allData =  Array.prototype.concat(response['0'], response['1'], response['2']);
+        this.allData.sort((a, b) => {
+          if(a.name < b.name) return -1;
+          else if(a.name > b.name) return 1;
+          return 0;
+        }) 
+        this.books.sort((a, b) => {
+          if(a.name < b.name) return -1;
+          else if(a.name > b.name) return 1;
+          return 0;
+        }) 
+        this.characters.sort((a, b) => {
+          if(a.name < b.name) return -1;
+          else if(a.name > b.name) return 1;
+          return 0;
+        }) 
+        this.houses.sort((a, b) => {
+          if(a.name < b.name) return -1;
+          else if(a.name > b.name) return 1;
+          return 0;
+        }) 
         this.apiClient.currentData = this.allData;
         this.filterValue = 'all'
         this.spinnerService.hide();
